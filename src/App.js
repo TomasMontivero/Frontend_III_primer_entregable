@@ -6,24 +6,24 @@
 // PROPS: App deberá pasar por props lo necesario a sus componenetes internos.
 
 import { useState } from "react";
-import data from "./components/data.json"
+import data from "./components/data.json";
 import Cabecera from "./components/Cabecera";
 import Listado from "./components/Listado";
 
 function App() {
 
-  const [compras, setCompras] = useState([]);
-  const catalogoJson = data;
-  const catalogoArray = [];
+  var [itemsComprados, setItemsComprados] = useState([0]);
 
-  function comprarItem(event) {
-
+  function onComprar(event) {
+    console.log("App -> onComprar()")
+    console.log("Items comprados: " + itemsComprados)
+    setItemsComprados(parseInt(itemsComprados) + 1)
   }
 
   return (
     <div className="App">
-      <Cabecera stockTotal={10} />
-      <Listado />
+      <Cabecera itemsComprados={itemsComprados} />
+      <Listado onComprar={() => onComprar()} />
     </div>
   );
 }
